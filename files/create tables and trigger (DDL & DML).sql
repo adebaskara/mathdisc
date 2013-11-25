@@ -458,79 +458,92 @@ BEGIN
 END;
 /
 
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Ifan', 'M', 'D');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Iqbal', 'M', 'W');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Ifan Iqbal', 'M', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Iqbal Ifan', 'M', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Ade', 'M', 'D');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Baskara', 'M', 'W');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Ade Baskara', 'M', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Baskara Ade', 'M', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossa', 'F', 'D');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossalina', 'F', 'W');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossa Lina Susanti', 'F', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Susan Puteri', 'F', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Jenny Sutrisno', 'F', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Siti Maimunah', 'F', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Jamaludin Akhirat', 'M', 'S');
-INSERT INTO "bdl"."artist" ("artistName", "artistSex", "artistRole") VALUES ('Putra Andro', 'M', 'S');
+create sequence "logTime";
+
+create or replace trigger "logTime"
+before insert on "log" 
+for each row
+
+begin
+	select CURRENT_TIMESTAMP
+	into :new."logTime"
+	from dual;
+end;
+/
+
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Ifan', 'M', 'D');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Iqbal', 'M', 'W');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Ifan Iqbal', 'M', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Iqbal Ifan', 'M', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Ade', 'M', 'D');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Baskara', 'M', 'W');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Ade Baskara', 'M', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Baskara Ade', 'M', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossa', 'F', 'D');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossalina', 'F', 'W');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Rossa Lina Susanti', 'F', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Susan Puteri', 'F', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Jenny Sutrisno', 'F', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Siti Maimunah', 'F', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Jamaludin Akhirat', 'M', 'S');
+INSERT INTO "artist" ("artistName", "artistSex", "artistRole") VALUES ('Putra Andro', 'M', 'S');
 
 
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Rusak', '10');
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Lecet', '3');
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Hilang', '10');
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Rusak New Release', '15');
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Lecet New Release', '10');
-INSERT INTO "bdl"."penalty" ("penaltyName", "penaltyFine") VALUES ('Hilang New Release', '15');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Rusak', '10');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Lecet', '3');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Hilang', '10');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Rusak New Release', '15');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Lecet New Release', '10');
+INSERT INTO "penalty" ("penaltyName", "penaltyFine") VALUES ('Hilang New Release', '15');
 
 
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('New Release', '6000');
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('Family', '4000');
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('Action', '4000');
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('Cartoon', '3500');
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('West', '4000');
-INSERT INTO "bdl"."category" ("categoryName", "categoryPrice") VALUES ('Asia', '4000');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('New Release', '6000');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('Family', '4000');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('Action', '4000');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('Cartoon', '3500');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('West', '4000');
+INSERT INTO "category" ("categoryName", "categoryPrice") VALUES ('Asia', '4000');
 
 
-UPDATE "bdl"."penalty" SET "penaltyName" = 'Rusak Baru' WHERE "penaltyID" = 4;
-UPDATE "bdl"."penalty" SET "penaltyName" = 'Lecet Baru' WHERE "penaltyID" = 5;
-UPDATE "bdl"."penalty" SET "penaltyName" = 'Hilang Baru' WHERE "penaltyID" = 6;
+UPDATE "penalty" SET "penaltyName" = 'Rusak Baru' WHERE "penaltyID" = 4;
+UPDATE "penalty" SET "penaltyName" = 'Lecet Baru' WHERE "penaltyID" = 5;
+UPDATE "penalty" SET "penaltyName" = 'Hilang Baru' WHERE "penaltyID" = 6;
 
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '4');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '5');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '6');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '1');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '2');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '3');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '1');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '2');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '3');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '1');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '2');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '3');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '1');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '2');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '3');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '1');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '2');
-INSERT INTO "bdl"."categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '3');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '4');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '5');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('1', '6');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '1');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '2');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('2', '3');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '1');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '2');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('3', '3');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '1');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '2');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('4', '3');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '1');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '2');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('5', '3');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '1');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '2');
+INSERT INTO "categoryPenalty" ("categoryID", "penaltyID") VALUES ('6', '3');
 
-INSERT INTO "bdl"."discPrice" ("discType", "priceMultiplier") VALUES ('V', '1');
-INSERT INTO "bdl"."discPrice" ("discType", "priceMultiplier") VALUES ('D', '1.5');
-INSERT INTO "bdl"."discPrice" ("discType", "priceMultiplier") VALUES ('B', '3');
+INSERT INTO "discPrice" ("discType", "priceMultiplier") VALUES ('V', '1');
+INSERT INTO "discPrice" ("discType", "priceMultiplier") VALUES ('D', '1.5');
+INSERT INTO "discPrice" ("discType", "priceMultiplier") VALUES ('B', '3');
 
-INSERT INTO "bdl"."event" ("eventName", "eventDescription", "eventStartDate", "eventEndDate", "eventDiscount") VALUES ('Tahun Baru 2014', 'Diskon Tahun Baru 2014', TO_DATE('30-DEC-13', 'DD-MON-RR'), TO_DATE('01-JAN-14', 'DD-MON-RR'), '30');
-INSERT INTO "bdl"."event" ("eventName", "eventDescription", "eventStartDate", "eventEndDate", "eventDiscount") VALUES ('Hari Kemerdekaan RI 2014', 'Diskon Hari Kemerdekaan RI 2014', TO_DATE('17-AUG-14', 'DD-MON-RR'), TO_DATE('17-AUG-14', 'DD-MON-RR'), '30');
-
-
-INSERT INTO "bdl"."movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Legenda Programmer TC', TO_DATE('01-NOV-2013', 'DD-MON-RR'), '90');
-INSERT INTO "bdl"."movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Ada Apa Dengan TCinta', TO_DATE('02-NOV-2013', 'DD-MON-RR'), '80');
-INSERT INTO "bdl"."movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Misteri Lantai 4', TO_DATE('13-NOV-2013', 'DD-MON-RR'), '95');
-INSERT INTO "bdl"."movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Tutorial Basis Data', TO_DATE('30-AUG-2013', 'DD-MON-RR'), '50');
+INSERT INTO "event" ("eventName", "eventDescription", "eventStartDate", "eventEndDate", "eventDiscount") VALUES ('Tahun Baru 2014', 'Diskon Tahun Baru 2014', TO_DATE('30-DEC-13', 'DD-MON-RR'), TO_DATE('01-JAN-14', 'DD-MON-RR'), '30');
+INSERT INTO "event" ("eventName", "eventDescription", "eventStartDate", "eventEndDate", "eventDiscount") VALUES ('Hari Kemerdekaan RI 2014', 'Diskon Hari Kemerdekaan RI 2014', TO_DATE('17-AUG-14', 'DD-MON-RR'), TO_DATE('17-AUG-14', 'DD-MON-RR'), '30');
 
 
-INSERT INTO "bdl"."genre" ("genreName", "genreDescription") VALUES ('Misteri', 'Serem ngageti');
-INSERT INTO "bdl"."genre" ("genreName", "genreDescription") VALUES ('Tutorial', 'Penuh edukasi');
-INSERT INTO "bdl"."genre" ("genreName", "genreDescription") VALUES ('Aksi', 'Seru sekali');
+INSERT INTO "movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Legenda Programmer TC', TO_DATE('01-NOV-2013', 'DD-MON-RR'), '90');
+INSERT INTO "movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Ada Apa Dengan TCinta', TO_DATE('02-NOV-2013', 'DD-MON-RR'), '80');
+INSERT INTO "movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Misteri Lantai 4', TO_DATE('13-NOV-2013', 'DD-MON-RR'), '95');
+INSERT INTO "movie" ("movieTitle", "movieReleaseDate", "movieRating") VALUES ('Tutorial Basis Data', TO_DATE('30-AUG-2013', 'DD-MON-RR'), '50');
+
+
+INSERT INTO "genre" ("genreName", "genreDescription") VALUES ('Misteri', 'Serem ngageti');
+INSERT INTO "genre" ("genreName", "genreDescription") VALUES ('Tutorial', 'Penuh edukasi');
+INSERT INTO "genre" ("genreName", "genreDescription") VALUES ('Aksi', 'Seru sekali');
 
 
