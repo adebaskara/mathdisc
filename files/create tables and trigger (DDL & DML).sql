@@ -436,7 +436,13 @@ create table "imdb" (
 );
 
 create table "log" (
-	"logID" integer not null primary key
+	"logID" integer not null primary key,
+	"logName" varchar(64) not null,
+	"logType" varchar(16) not null,
+	"logTable" varchar(32) not null,
+	"logAction" varchar(16) not null,
+	"logTime" timestamp not null,
+	"logDescription" varchar(1024) not null
 );
 
 CREATE sequence "logID";
